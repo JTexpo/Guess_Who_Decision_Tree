@@ -1,0 +1,283 @@
+<html>
+
+<head>
+    <!-- PyScript: https://github.com/pyscript/pyscript/releases -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2023.05.1/pyscript.css" />
+    <script defer src="https://pyscript.net/releases/2023.05.1/pyscript.js"></script>
+    <!-- Bootstrap: https://getbootstrap.com -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- local Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <py-config>
+        packages = [
+            "numpy"
+        ]
+        [[fetch]]
+        files = [
+        "./main.py",
+        "./guess_who_dt/decision_tree.py",
+        "./guess_who_dt/utils.py",
+        "./assets/data/CastleCrashers20Q.csv"
+        ]
+    </py-config>
+</head>
+
+<body>
+    <!-- Healthy Spacing -->
+    <br>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col logo-flex-col">
+                    <img onclick="window.location.href = 'https://jtexpo.github.io'" src="../assets/images/jtexpo.png" alt="" class="logo-img">
+                    <a href="https://jtexpo.github.io" class="display-3 logo-main-text">JTexpo</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="display-4 text-center">
+                        <a href="https://www.youtube.com/@JTexpo" target="_blank" class="logo-sub-text">
+                            Content To Tr<span style="color: #F3AF56;">AI</span>n Your Brain
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Healthy Spacing -->
+    <br>
+    <br>
+    <!-- Graph RNN -->
+    <main>
+        <div class = "container">
+            <!-- Questions -->
+            <div class="row">
+                <div class = "col-md-1"></div>
+                <div class = "col-md-10 text-center">
+                    <div class="h1 info-header">Is the character a...</div>
+                    <div class="h2 info-body" id="question"></div>
+                    <div id="character_reveal"></div>
+                </div>
+                <div class = "col-md-1"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class = "col-md-2"></div>
+                <div class = "col-md-4">
+                    <button class="btn btn-block btn-success" py-click="navigate_tree_right()">Yes</button>
+                </div>
+                <div class = "col-md-4">
+                    <button class="btn btn-block btn-danger" py-click="navigate_tree_left()">No</button>
+                </div>
+                <div class = "col-md-2"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class = "col-md-2"></div>
+                <div class = "col-md-8">
+                    <button class="btn btn-block btn-primary" py-click="reset_tree()">New Game</button>
+                </div>
+                <div class = "col-md-2"></div>
+            </div>
+            <br>
+            <br>
+            <!-- Character Rouster  -->
+            <div class="row">
+                <div class = "col-md-1"></div>
+                <div class = "col-md-10">
+                    <div class="h2 info-header">Character Infos:</div>
+                </div>
+                <div class = "col-md-1"></div>
+            </div>
+            <div class="row">
+                <div class = "col-md-1"></div>
+                <div class = "col-md-10">
+                    <div class="h4 info-body" id="character_name">Character Name:</div>
+                </div>
+                <div class = "col-md-1"></div>
+            </div>
+            <div class="row">
+                <div class = "col-md-1"></div>
+                <div class = "col-md-10">
+                    <div class="h4 info-body">Character Traits:</div>
+                    <ul class="h4 info-body" id="character_traits"></ul>
+                </div>
+                <div class = "col-md-1"></div>
+            </div>
+            <div class="row">
+                <div class = "col-md-1"></div>
+                <div class="col-md-2">
+                    <image py-click="set_character_info(11)" id="Alien" src="./assets/images/Alien_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(5)" id="Barbarian" src="./assets/images/Barbarian_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(28)" id="Bear" src="./assets/images/Bear_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(23)" id="Killer Beekeeper" src="./assets/images/Killer_Beekeeper_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(13)" id="Blacksmith" src="./assets/images/Blacksmith_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class = "col-md-1"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class = "col-md-1"></div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(2)" id="Blue Knight" src="./assets/images/Blue_Knight_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(26)" id="Brute" src="./assets/images/Brute_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(25)" id="Civilian" src="./assets/images/Civilian_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(9)" id="Conehead" src="./assets/images/Conehead_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(18)" id="Cult Minion" src="./assets/images/Cult_Minion_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class = "col-md-1"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class = "col-md-1"></div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(29)" id="Fencer" src="./assets/images/Fencer_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(21)" id="Fire Demon" src="./assets/images/Fire_Demon_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(10)" id="Gray Knight" src="./assets/images/Gray_Knight_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(3)" id="Green Knight" src="./assets/images/Green_Knight_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(12)" id="Hatty Hattington" src="./assets/images/Hatty_Hattington_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class = "col-md-1"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class = "col-md-1"></div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(8)" id="Iceskimo" src="./assets/images/Iceskimo_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(20)" id="Industrialist" src="./assets/images/Industrialist_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(17)" id="King" src="./assets/images/King_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(15)" id="Necromancer" src="./assets/images/Necromancer_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(30)" id="Ninja" src="./assets/images/Ninja_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class = "col-md-1"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class = "col-md-1"></div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(16)" id="Open Faced Grey Knight" src="./assets/images/Open_Faced_Grey_Knight_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(4)" id="Orange Knight" src="./assets/images/Orange_Knight_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(7)" id="Peasant" src="./assets/images/Peasant_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(14)" id="Pink Knight" src="./assets/images/Pink_Knight_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(1)" id="Red Knight" src="./assets/images/Red_Knight_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class = "col-md-1"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class = "col-md-1"></div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(22)" id="Royal Guard" src="./assets/images/Royal_Guard_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(31)" id="Saracen" src="./assets/images/Saracen_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(19)" id="Skeleton" src="./assets/images/Skeleton_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(24)" id="Snakey" src="./assets/images/Snakey_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(27)" id="Stoveface" src="./assets/images/Stoveface_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class = "col-md-1"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class = "col-md-5"></div>
+                <div class="col-md-2">
+                    <img py-click="set_character_info(6)" id="Thief" src="./assets/images/Thief_Portrait.webp" width="100%" class="character-portrait">
+                </div>
+                <div class = "col-md-5"></div>
+            </div>
+            <!-- Healthy Spacing -->
+            <br>
+            <br>
+            <br>
+            <!-- Explination -->
+            <!-- How to use this app -->
+            <div class="row">
+                <div class="h2 info-header">How to use this app</div>
+            </div>
+            <div class="row">
+                <div class="h4 info-body">
+                    When you load the page, you'll see a question with "Yes" and "No" buttons. The question relates to a character from Castle Crashers. <br><br>
+                    If you're not familiar with the characters, a portrait of all of them is displayed below. Click on any portrait to view detailed information about that character, which might help answer the question. <br><br>
+                    To play, simply respond to the "Yes" or "No" questions, and watch as the AI tries to guess the character you're thinking of! <br><br>
+                    When you're finished, you can click the "New Game" button to start a new game. <br><br>
+                </div>
+            </div>
+            <!-- What is a RNN -->
+            <div class="row">
+                <div class="h2 info-header">What is a decision tree?</div>
+            </div>
+            <div class="row">
+                <div class="h4 info-body">
+                    Decision trees are similar to "if-else" statements; however, in this example, the decision tree is created programmatically. <br><br>
+                    This approach ensures the decision tree achieves the smallest possible depth by splitting based on the feature with the largest variance. <br><br>
+                    Decision trees excel in well-defined situations where the goal is either to approximate the classification of a new object or to directly classify an existing one. <br><br>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Healthy Spacing -->
+    <br>
+    <br>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class = "row">
+                <div class = "col text-center">
+                    <div class="h4 footer-rights">&copy; 2025 Justin Tyler Esposito. All rights reserved.</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <py-script src="./main.py"></py-script>
+</body>
+
+</html>

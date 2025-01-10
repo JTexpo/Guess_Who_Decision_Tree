@@ -1,0 +1,32 @@
+Character,ID,Starting Character,Areana Unlock,First Game Completion Unlock,Second Game Completion Unlock,Normal Mode Map Unlock,Insane Mode Map Unlock,DLC Unlock,Non-Elemental Magic Caster (excluding hybrid),Bomb Magic Caster,Character Who Covers Their Face,Character Who Has Green In Them,Character Who Has Red In Them,Character Who Has Blue In Them,Character Who Has Purple In Them,Human,Nature Lover
+Red Knight,1,1,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0
+Blue Knight,2,1,0,0,0,0,0,0,0,0,1,0,0,1,0,1,0
+Green Knight,3,1,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0
+Orange Knight,4,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+Barbarian,5,0,1,0,0,0,0,0,1,0,1,1,0,0,0,0,0
+Thief,6,0,1,0,0,0,0,0,1,0,1,0,0,0,0,1,0
+Peasant,7,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,1
+Iceskimo,8,0,1,0,0,0,0,0,0,0,1,0,0,1,0,1,0
+Conehead,9,0,1,0,0,0,0,0,0,1,1,0,0,0,0,1,0
+Grey Knight,10,0,0,0,0,1,0,0,0,1,1,0,0,0,0,1,0
+Alien,11,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+Hatty Hattington,12,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0
+Blacksmith,13,0,0,0,0,0,0,1,0,0,1,0,0,0,1,1,0
+Pink Knight,14,0,0,0,0,0,0,1,1,0,1,0,0,0,0,1,0
+Necromancer,15,0,0,0,0,0,1,0,1,0,1,0,1,0,0,1,0
+Open Faced Grey Knight,16,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0
+King,17,0,0,0,0,0,1,0,1,0,0,0,0,0,1,1,0
+Cult Minion,18,0,0,0,0,0,1,0,1,0,1,1,1,0,0,1,0
+Skeleton,19,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+Industrialist,20,0,0,1,0,0,0,0,1,0,1,0,0,1,0,1,0
+Fire Demon,21,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0
+Royal Guard,22,0,0,1,0,0,0,0,0,1,1,0,0,0,0,1,0
+Killer Beekeeper,23,0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,1
+Snakey,24,0,0,1,0,0,0,0,1,0,0,1,0,0,0,1,1
+Civilian,25,0,0,1,0,0,0,0,1,0,0,0,0,0,0,1,1
+Brute,26,0,0,1,0,0,0,0,1,0,1,1,0,0,0,1,0
+Stove Face,27,0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0
+Bear,28,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1
+Fencer,29,0,0,0,1,0,0,0,1,0,1,0,0,0,1,1,0
+Ninja,30,0,0,0,1,0,0,0,1,0,1,0,0,1,0,1,0
+Saracen,31,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0
